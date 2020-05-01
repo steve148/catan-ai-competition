@@ -29,7 +29,7 @@ class State:
         monopoly_cards = [{"type": "monopoly"} for i in range(2)]
         road_building_cards = [{"type": "road_building"} for i in range(2)]
         year_of_plenty_cards = [{"type": "year_of_plenty"} for i in range(2)]
-        victory_point_cards = [{"type": "knight"} for i in range(5)]
+        victory_point_cards = [{"type": "victory"} for i in range(5)]
         self.development_cards = (
             knight_cards
             + monopoly_cards
