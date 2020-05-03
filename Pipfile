@@ -9,6 +9,8 @@ flake8 = "*"
 black = "*"
 mypy = "*"
 flake8-black = "*"
+pytest-watch = "*"
+pytest-testmon = "*"
 
 [packages]
 

@@ -1,2 +1,2 @@
 test:
-	pytest --pyargs catan_core
+	ptw --runner "pytest --testmon"
