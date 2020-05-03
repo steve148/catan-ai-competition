@@ -1,11 +1,12 @@
 class Vertex:
-    def __init__(self):
-        pass
+    def __init__(self, position):
+        self.position = position
 
 
 class Hex:
-    def __init__(self):
-        self.vertices = [Vertex() for i in range(6)]
+    def __init__(self, position):
+        self.position = position
+        self.vertices = [Vertex(i) for i in range(6)]
 
 
 class Board:
@@ -14,4 +15,4 @@ class Board:
     """
 
     def __init__(self):
-        self.hexes = [Hex() for i in range(19)]
+        self.hexes = [Hex(i) for i in range(19)]
