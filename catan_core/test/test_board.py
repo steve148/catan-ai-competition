@@ -1,4 +1,11 @@
-from catan_core.board import Board
+from catan_core.board import Board, Hex
+
+
+class TestHex:
+    """Tests for the Hex class."""
+
+    def test_six_vertices(self):
+        assert len(Hex().vertices) == 6
 
 
 class TestBoard:

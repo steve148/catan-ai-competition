@@ -1,6 +1,11 @@
-class Hex:
+class Vertex:
     def __init__(self):
         pass
+
+
+class Hex:
+    def __init__(self):
+        self.vertices = [Vertex() for i in range(6)]
 
 
 class Board:
