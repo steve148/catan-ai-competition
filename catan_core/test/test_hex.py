@@ -1,0 +1,2 @@
+class TestHex:
+    pass
