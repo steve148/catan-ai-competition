@@ -2,6 +2,8 @@ import random
 
 resource_types = ["wheat", "wood", "sheep", "clay", "rock"]
 
+from catan_core.development_card.deck import DevelopmentCardDeck
+
 
 class State:
     """
@@ -25,16 +27,4 @@ class State:
         ]
 
         # Shuffle the development card deck.
-        knight_cards = [{"type": "knight"} for i in range(14)]
-        monopoly_cards = [{"type": "monopoly"} for i in range(2)]
-        road_building_cards = [{"type": "road_building"} for i in range(2)]
-        year_of_plenty_cards = [{"type": "year_of_plenty"} for i in range(2)]
-        victory_point_cards = [{"type": "victory"} for i in range(5)]
-        self.development_cards = (
-            knight_cards
-            + monopoly_cards
-            + road_building_cards
-            + year_of_plenty_cards
-            + victory_point_cards
-        )
-        random.shuffle(self.development_cards)
+        self.development_card_deck = DevelopmentCardDeck()

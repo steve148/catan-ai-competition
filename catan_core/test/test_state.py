@@ -1,4 +1,5 @@
 from catan_core.state import State
+from catan_core.development_card.deck import DevelopmentCardDeck
 
 
 class TestState:
@@ -23,19 +24,6 @@ class TestState:
             {"cities": 4, "player": "p2", "roads": 15, "settlements": 5},
         ]
 
-    def test_init_development_cards(self):
-        """Check that initial state of game includes all development cards."""
+    def test_init_deck_of_development_cards(self):
         state = State()
-        cards = state.development_cards
-        assert len([card for card in cards if card["type"] == "knight"]) == 14
-        assert len([card for card in cards if card["type"] == "monopoly"]) == 2
-        assert len([card for card in cards if card["type"] == "road_building"]) == 2
-        assert len([card for card in cards if card["type"] == "year_of_plenty"]) == 2
-        assert len([card for card in cards if card["type"] == "victory"]) == 5
-
-    def test_init_development_cards_shuffled(self):
-        """Check that initial state of game includes shuffled set of development cards."""
-        state1 = State()
-        state2 = State()
-
-        assert state1.development_cards != state2.development_cards
+        assert isinstance(state.development_card_deck, DevelopmentCardDeck)
