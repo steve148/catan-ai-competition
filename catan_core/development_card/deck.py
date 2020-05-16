@@ -1,3 +1,5 @@
+from random import shuffle
+
 from catan_core.development_card.knight_card import KnightDevelopmentCard
 from catan_core.development_card.monopoly_card import MonopolyDevelopmentCard
 from catan_core.development_card.road_building_card import RoadBuildingDevelopmentCard
@@ -14,3 +16,7 @@ class DevelopmentCardDeck:
             + [YearOfPlentyDevelopmentCard() for i in range(2)]
             + [VictoryPointDevelopmentCard() for i in range(5)]
         )
+
+    def draw(self):
+        shuffle(self.cards)
+        return self.cards.pop()

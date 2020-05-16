@@ -38,3 +38,10 @@ class TestDevelopmentCardDeck:
             card for card in deck.cards if isinstance(card, RoadBuildingDevelopmentCard)
         ]
         assert len(road_building_cards) == 2
+
+    def test_draw_card_from_deck(self):
+        deck = DevelopmentCardDeck()
+        previous_count = len(deck.cards)
+        deck.draw()
+        new_count = len(deck.cards)
+        assert previous_count == new_count + 1
