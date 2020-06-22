@@ -1,5 +1,6 @@
 from catan_core.state import State
 from catan_core.development_card.deck import DevelopmentCardDeck
+from catan_core.resource_card.deck import ResourceCardDeck
 
 
 class TestState:
@@ -8,13 +9,7 @@ class TestState:
     def test_init_resource_cards(self):
         """Check that initial state of game includes all resource cards."""
         state = State()
-        assert state.resource_cards == [
-            {"type": "wheat", "available": 19},
-            {"type": "wood", "available": 19},
-            {"type": "sheep", "available": 19},
-            {"type": "clay", "available": 19},
-            {"type": "rock", "available": 19},
-        ]
+        assert isinstance(state.resource_card_deck, ResourceCardDeck)
 
     def test_init_player_pieces(self):
         """Check that initial state of game includes pieces for each player."""

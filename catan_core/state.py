@@ -1,8 +1,9 @@
 import random
 
-resource_types = ["wheat", "wood", "sheep", "clay", "rock"]
-
 from catan_core.development_card.deck import DevelopmentCardDeck
+from catan_core.resource_card.deck import ResourceCardDeck
+
+resource_types = ["wheat", "wood", "sheep", "clay", "rock"]
 
 
 class State:
@@ -16,9 +17,7 @@ class State:
 
     def reset(self):
         # There should be 19 of each resource type.
-        self.resource_cards = [
-            {"type": resource_type, "available": 19} for resource_type in resource_types
-        ]
+        self.resource_card_deck = ResourceCardDeck()
 
         # Each player gets 15 roads, 5 settlements, and 4 cities.
         self.player_pieces = [
