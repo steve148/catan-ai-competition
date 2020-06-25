@@ -23,7 +23,7 @@ class State:
 
         # Create the board.
         # TODO: need to implement board class first.
-        self.board = None
+        self.board = Board()
 
         # Each player gets 15 roads, 5 settlements, and 4 cities.
         self.player_pieces = [

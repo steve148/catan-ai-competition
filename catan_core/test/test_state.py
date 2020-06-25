@@ -34,3 +34,7 @@ class TestState:
                 "largest_army": False,
             }
         ]
+
+    def test_init_board(self):
+        state = State()
+        assert isinstance(state.board, Board)
