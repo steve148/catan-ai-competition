@@ -3,6 +3,7 @@ from catan_core.resource_type.rock import Rock
 from catan_core.resource_type.sheep import Sheep
 from catan_core.resource_type.wheat import Wheat
 from catan_core.resource_type.wood import Wood
+from catan_core.resource_type.resource_type import ResourceType
 
 resource_types = [Clay, Rock, Sheep, Wheat, Wood]
 
@@ -13,7 +14,7 @@ class ResourceCardDeck:
         for resource in resource_types:
             self.cards[resource] = 19
 
-    def draw(self, resource: str, amount: int) -> int:
+    def draw(self, resource: ResourceType, amount: int) -> int:
         if resource not in resource_types:
             raise ValueError(f"Resource must be one of the following {resource_types}")
 
