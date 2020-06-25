@@ -2,8 +2,6 @@ from catan_core.board import Board
 from catan_core.development_card.deck import DevelopmentCardDeck
 from catan_core.resource_card.deck import ResourceCardDeck
 
-resource_types = ["wheat", "wood", "sheep", "clay", "rock"]
-
 
 class State:
     """
