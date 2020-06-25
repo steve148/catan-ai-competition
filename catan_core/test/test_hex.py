@@ -2,6 +2,7 @@ from catan_core.hex import Hex
 
 
 class TestHex:
-    def test_init_resource_type(self):
-        hex = Hex("rock")
+    def test_init(self):
+        hex = Hex("rock", 5)
         assert hex.resource_type == "rock"
+        assert hex.number == 5
