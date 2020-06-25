@@ -1,3 +1,5 @@
+import random
+
 from catan_core.edge import Edge
 from catan_core.hex import Hex
 from catan_core.vertex import Vertex
@@ -9,8 +11,11 @@ class Board:
     """
 
     def __init__(self):
-        self.hexes = [Hex(resource_type="rock") for i in range(19)]
+        # Randomly select resource type and number for each hex.
+        self.hexes = self.setup_hexes()
+
         self.vertices = [Vertex() for i in range(54)]
+
         self.edges = [Edge() for i in range(72)]
 
         for edge_index, vertex_indices in enumerate(connected_vertices):
@@ -21,6 +26,33 @@ class Board:
 
             for vertex in vertices:
                 vertex.add_edge(edge)
+
+    def setup_hexes(self):
+        # Define how many of each resource should be on the board.
+        resource_types = (
+            (3 * ["rock"])
+            + (3 * ["clay"])
+            + (4 * ["wood"])
+            + (4 * ["sheep"])
+            + (4 * ["wheat"])
+        )
+        random.shuffle(resource_types)
+
+        # There should be two of each hex number on the board.
+        # 2 and 12 are the exception with only 1 instance of each.
+        numbers = [2, 3, 3, 4, 4, 5, 5, 6, 6, 8, 8, 9, 9, 10, 10, 11, 11, 12]
+        random.shuffle(numbers)
+
+        # Combine the two lists and add the hex values for the dessert tile.
+        hex_values = [list(a) for a in zip(resource_types, numbers)] + [("desert", 7)]
+        random.shuffle(hex_values)
+
+        # Use the shuffled hex values to create each hex instance on the board.
+        hexes = []
+        for resource_type, number in hex_values:
+            hexes.append(Hex(resource_type, number))
+
+        return hexes
 
 
 connected_vertices = [
