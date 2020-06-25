@@ -1,2 +1,3 @@
 class Hex:
-    pass
+    def __init__(self, resource_type):
+        self.resource_type = resource_type

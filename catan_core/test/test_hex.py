@@ -1,2 +1,7 @@
+from catan_core.hex import Hex
+
+
 class TestHex:
-    pass
+    def test_init_resource_type(self):
+        hex = Hex("rock")
+        assert hex.resource_type == "rock"

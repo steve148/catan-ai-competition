@@ -9,7 +9,7 @@ class Board:
     """
 
     def __init__(self):
-        self.hexes = [Hex() for i in range(19)]
+        self.hexes = [Hex(resource_type="rock") for i in range(19)]
         self.vertices = [Vertex() for i in range(54)]
         self.edges = [Edge() for i in range(72)]
 
