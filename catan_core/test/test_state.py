@@ -1,6 +1,7 @@
-from catan_core.state import State
+from catan_core.board import Board
 from catan_core.development_card.deck import DevelopmentCardDeck
 from catan_core.resource_card.deck import ResourceCardDeck
+from catan_core.state import State
 
 
 class TestState:
@@ -22,3 +23,14 @@ class TestState:
     def test_init_deck_of_development_cards(self):
         state = State()
         assert isinstance(state.development_card_deck, DevelopmentCardDeck)
+
+    def test_init_bonus_victory_points_tracker(self):
+        state = State(players=["p1"])
+        assert state.bonus_victory_points == [
+            {
+                "player": "p1",
+                "victory_point_development_cards": 0,
+                "longest_road": False,
+                "largest_army": False,
+            }
+        ]
