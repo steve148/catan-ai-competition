@@ -1,0 +1,2 @@
+class Clay:
+    pass
