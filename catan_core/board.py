@@ -2,6 +2,12 @@ import random
 
 from catan_core.edge import Edge
 from catan_core.hex import Hex
+from catan_core.resource_type.clay import Clay
+from catan_core.resource_type.resource_type import ResourceType
+from catan_core.resource_type.rock import Rock
+from catan_core.resource_type.sheep import Sheep
+from catan_core.resource_type.wheat import Wheat
+from catan_core.resource_type.wood import Wood
 from catan_core.vertex import Vertex
 
 
@@ -29,13 +35,7 @@ class Board:
 
     def setup_hexes(self):
         # Define how many of each resource should be on the board.
-        resource_types = (
-            (3 * ["rock"])
-            + (3 * ["clay"])
-            + (4 * ["wood"])
-            + (4 * ["sheep"])
-            + (4 * ["wheat"])
-        )
+        resource_types = (3 * [Rock, Clay]) + (4 * [Wood, Wheat, Sheep])
         random.shuffle(resource_types)
 
         # There should be two of each hex number on the board.
@@ -44,7 +44,7 @@ class Board:
         random.shuffle(numbers)
 
         # Combine the two lists and add the hex values for the dessert tile.
-        hex_values = [list(a) for a in zip(resource_types, numbers)] + [("desert", 7)]
+        hex_values = [list(a) for a in zip(resource_types, numbers)] + [(None, 7)]
         random.shuffle(hex_values)
 
         # Use the shuffled hex values to create each hex instance on the board.
