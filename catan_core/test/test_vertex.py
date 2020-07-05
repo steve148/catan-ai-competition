@@ -1,4 +1,5 @@
 from catan_core.edge import Edge
+from catan_core.port.rock_port import RockPort
 from catan_core.vertex import Vertex
 
 
@@ -8,10 +9,8 @@ class TestVertex:
 
         assert vertex.edges == []
 
-    def test_add_edge(self):
-        vertex = Vertex()
-        edge = Edge()
+    def test_init_port(self):
+        port = RockPort()
+        vertex = Vertex(port=port)
 
-        vertex.add_edge(edge)
-
-        assert vertex.edges == [edge]
+        assert vertex.port == port

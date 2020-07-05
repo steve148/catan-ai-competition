@@ -1,10 +1,10 @@
+from typing import List
+
+from catan_core.edge import Edge
+from catan_core.port.port import Port
+
+
 class Vertex:
-    def __init__(self):
-        self._edges = []
-
-    @property
-    def edges(self):
-        return self._edges
-
-    def add_edge(self, edge):
-        self._edges.append(edge)
+    def __init__(self, port: Port = None):
+        self.edges: List[Edge] = []
+        self.port = port
