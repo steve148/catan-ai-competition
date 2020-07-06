@@ -24,14 +24,21 @@ class Board:
 
         self.edges = [Edge() for i in range(72)]
 
-        for edge_index, vertex_indices in enumerate(connected_vertices):
+        for hex_index, vertex_indices in enumerate(hex_to_vertex):
+            hex = self.hexes[hex_index]
+
+            for vertex_index in vertex_indices:
+                vertex = self.vertices[vertex_index]
+
+                hex.vertices.append(vertex)
+
+        for edge_index, vertex_indices in enumerate(edge_to_vertices):
             edge = self.edges[edge_index]
-            vertices = [self.vertices[i] for i in vertex_indices]
 
-            edge.vertices = vertices
+            for vertex_index in vertex_indices:
+                vertex = self.vertices[vertex_index]
 
-            for vertex in vertices:
-                vertex.add_edge(edge)
+                vertex.edges.append(edge)
 
     def setup_hexes(self):
         # Define how many of each resource should be on the board.
@@ -55,7 +62,7 @@ class Board:
         return hexes
 
 
-connected_vertices = [
+edge_to_vertices = [
     (0, 1),
     (1, 2),
     (2, 3),
@@ -128,4 +135,27 @@ connected_vertices = [
     (50, 51),
     (51, 52),
     (52, 53),
+]
+
+
+hex_to_vertex = [
+    (0, 1, 2, 8, 9, 10),
+    (2, 3, 4, 10, 11, 12),
+    (4, 5, 6, 12, 13, 14),
+    (7, 8, 9, 17, 18, 19),
+    (9, 10, 11, 19, 20, 21),
+    (11, 12, 13, 21, 22, 23),
+    (13, 14, 15, 23, 24, 25),
+    (16, 17, 18, 27, 28, 29),
+    (18, 19, 20, 29, 30, 31),
+    (20, 21, 22, 31, 32, 33),
+    (22, 23, 24, 33, 34, 35),
+    (24, 25, 26, 35, 36, 37),
+    (28, 29, 30, 38, 39, 40),
+    (30, 31, 32, 40, 41, 42),
+    (32, 33, 34, 42, 43, 44),
+    (34, 35, 36, 44, 45, 46),
+    (39, 40, 41, 47, 48, 49),
+    (41, 42, 43, 49, 50, 51),
+    (43, 44, 45, 51, 52, 53),
 ]
