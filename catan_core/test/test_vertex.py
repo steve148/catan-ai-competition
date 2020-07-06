@@ -1,3 +1,6 @@
+import pytest
+
+from catan_core.building.building import Building
 from catan_core.edge import Edge
 from catan_core.port.rock_port import RockPort
 from catan_core.vertex import Vertex
@@ -14,3 +17,11 @@ class TestVertex:
         vertex = Vertex(port=port)
 
         assert vertex.port == port
+
+    def test_assign_building_raises_error_if_already_assigned(self):
+        vertex = Vertex()
+        vertex.building = Building()
+        with pytest.raises(
+            RuntimeError, match=r"A building already exists at this vertex"
+        ):
+            vertex.assign_building(building=Building())
