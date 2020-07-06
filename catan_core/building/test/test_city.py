@@ -9,3 +9,7 @@ class TestCity:
     def test_init_payout_count(self):
         city = City(player="p1")
         assert city.payout == 2
+
+    def test_init_victory_points(self):
+        city = City(player="p1")
+        assert city.victory_points == 2
