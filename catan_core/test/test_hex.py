@@ -7,3 +7,4 @@ class TestHex:
         hex = Hex(Rock, 5)
         assert hex.resource_type == Rock
         assert hex.number == 5
+        assert hex.vertices == []
