@@ -14,17 +14,20 @@ class TestState:
         state = State()
         assert isinstance(state.resource_card_deck, ResourceCardDeck)
 
-    def test_init_player_pieces(self):
-        """Check that initial state of game includes pieces for each player."""
-        state = State(players=["p1", "p2"])
-        assert state.player_pieces == [
-            {"cities": 4, "player": "p1", "roads": 15, "settlements": 5},
-            {"cities": 4, "player": "p2", "roads": 15, "settlements": 5},
-        ]
-
     def test_init_deck_of_development_cards(self):
         state = State()
         assert isinstance(state.development_card_deck, DevelopmentCardDeck)
+
+    def test_init_board(self):
+        state = State()
+        assert isinstance(state.board, Board)
+
+    def test_init_player_pieces(self):
+        """Check that initial state of game includes pieces for each player."""
+        state = State(players=["p1"])
+        assert state.player_pieces == {
+            "p1": {"cities": 4, "roads": 15, "settlements": 5}
+        }
 
     def test_init_bonus_victory_points_tracker(self):
         state = State(players=["p1"])
@@ -35,10 +38,6 @@ class TestState:
                 "largest_army": False,
             }
         }
-
-    def test_init_board(self):
-        state = State()
-        assert isinstance(state.board, Board)
 
     def test_is_game_over_no_player_won(self):
         state = State(players=["p1", "p2"])

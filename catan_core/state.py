@@ -24,10 +24,9 @@ class State:
         self.board = Board()
 
         # Each player gets 15 roads, 5 settlements, and 4 cities.
-        self.player_pieces = [
-            {"player": player, "roads": 15, "settlements": 5, "cities": 4}
-            for player in self.players
-        ]
+        self.player_pieces = {}
+        for player in self.players:
+            self.player_pieces[player] = {"roads": 15, "settlements": 5, "cities": 4}
 
         # Bonus victory points
         self.bonus_victory_points = {}
