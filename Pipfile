@@ -12,6 +12,7 @@ flake8-black = "*"
 pytest-watch = "*"
 pytest-testmon = "*"
 pytest-cov = "*"
+pre-commit = "*"
 
 [packages]
 
