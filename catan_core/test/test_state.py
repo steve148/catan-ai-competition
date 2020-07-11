@@ -39,6 +39,12 @@ class TestState:
             }
         }
 
+    def test_init_player_order_includes_all_players(self):
+        players = ["p1", "p2", "p3", "p4"]
+        state = State(players=players)
+        for player in players:
+            assert player in state.player_order
+
     def test_is_game_over_no_player_won(self):
         state = State(players=["p1", "p2"])
         assert not state.is_game_over()

@@ -1,3 +1,5 @@
+import random
+
 from catan_core.board import Board
 from catan_core.development_card.deck import DevelopmentCardDeck
 from catan_core.resource_card.deck import ResourceCardDeck
@@ -22,6 +24,9 @@ class State:
         # Create the board.
         # TODO: need to implement board class first.
         self.board = Board()
+
+        self.player_order = self.players.copy()
+        random.shuffle(self.player_order)
 
         # Each player gets 15 roads, 5 settlements, and 4 cities.
         self.player_pieces = {}
