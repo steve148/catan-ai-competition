@@ -28,6 +28,7 @@ class Board:
             hex = self.hexes[hex_index]
 
             for vertex_index in vertex_indices:
+
                 vertex = self.vertices[vertex_index]
 
                 hex.vertices.append(vertex)
@@ -60,6 +61,15 @@ class Board:
             hexes.append(Hex(resource_type, number))
 
         return hexes
+
+    def victory_points_for_player(self, player) -> int:
+        return sum(
+            [
+                vertex.building.victory_points
+                for vertex in self.vertices
+                if vertex.building and vertex.building.player == player
+            ]
+        )
 
 
 edge_to_vertices = [
