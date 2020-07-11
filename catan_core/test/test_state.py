@@ -43,12 +43,12 @@ class TestState:
         players = ["p1", "p2", "p3", "p4"]
         state = State(players=players)
         for player in players:
-            assert player in state.player_order
+            assert player in state.players
 
     def test_init_current_player_turn(self):
         players = ["p1", "p2", "p3", "p4"]
         state = State(players=players)
-        assert state.current_player_turn == state.player_order[0]
+        assert state.current_player_turn == state.players[0]
 
     def test_is_game_over_no_player_won(self):
         state = State(players=["p1", "p2"])

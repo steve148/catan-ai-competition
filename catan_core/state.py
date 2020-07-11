@@ -11,10 +11,6 @@ class State:
     """
 
     def __init__(self, players=[]):
-        self.players = players
-        self.reset()
-
-    def reset(self):
         # There should be 19 of each resource type.
         self.resource_card_deck = ResourceCardDeck()
 
@@ -24,10 +20,10 @@ class State:
         # Create the board.
         self.board = Board()
 
-        self.player_order = self.players.copy()
-        random.shuffle(self.player_order)
+        self.players = players.copy()
+        random.shuffle(self.players)
 
-        self.current_player_turn = self.player_order[0]
+        self.current_player_turn = self.players[0]
 
         # Each player gets 15 roads, 5 settlements, and 4 cities.
         self.player_pieces = {}
