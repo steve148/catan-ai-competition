@@ -22,7 +22,6 @@ class State:
         self.development_card_deck = DevelopmentCardDeck()
 
         # Create the board.
-        # TODO: need to implement board class first.
         self.board = Board()
 
         self.player_order = self.players.copy()
