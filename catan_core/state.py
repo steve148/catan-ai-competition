@@ -30,12 +30,34 @@ class State:
         ]
 
         # Bonus victory points
-        self.bonus_victory_points = [
-            {
-                "player": player,
+        self.bonus_victory_points = {}
+        for player in self.players:
+            self.bonus_victory_points[player] = {
                 "victory_point_development_cards": 0,
                 "longest_road": False,
                 "largest_army": False,
             }
-            for player in self.players
-        ]
+
+    def is_game_over(self):
+        for player in self.players:
+            if self.player_has_won(player=player):
+                return player
+
+        return None
+
+    def player_has_won(self, player):
+        points = 0
+
+        bonus_victory_points = self.bonus_victory_points[player]
+
+        points += bonus_victory_points["victory_point_development_cards"]
+
+        if bonus_victory_points["longest_road"]:
+            points += 2
+
+        if bonus_victory_points["largest_army"]:
+            points += 2
+
+        points += self.board.victory_points_for_player(player)
+
+        return points >= 10
