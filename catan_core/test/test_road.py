@@ -1,2 +1,9 @@
+from catan_core.player import Player
+from catan_core.road import Road
+
+
 class TestRoad:
-    pass
+    def test_init_player(self):
+        player = Player()
+        road = Road(player=player)
+        assert road.player == player

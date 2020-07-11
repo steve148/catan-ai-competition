@@ -1,0 +1,21 @@
+fail_fast: true
+repos:
+  - repo: local
+    hooks:
+      - id: formatter
+        name: Code formatting is consistent.
+        entry: pipenv run black
+        language: python
+        files: \.py$
+      - id: test
+        name: Automated tests pass.
+        entry: pipenv run pytest catan_core
+        language: python
+        files: \.py$
+        pass_filenames: false
+      - id: test-coverage
+        name: Test coverage stays high.
+        entry: pipenv run pytest --cov=catan_core --cov-fail-under=100 catan_core
+        language: python
+        files: \.py$
+        pass_filenames: false

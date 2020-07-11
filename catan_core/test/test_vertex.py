@@ -25,3 +25,9 @@ class TestVertex:
             RuntimeError, match=r"A building already exists at this vertex"
         ):
             vertex.assign_building(building=Building())
+
+    def test_assign_building_successfully(self):
+        vertex = Vertex()
+        building = Building()
+        vertex.assign_building(building=building)
+        assert vertex.building == building
