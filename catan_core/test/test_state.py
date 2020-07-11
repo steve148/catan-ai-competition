@@ -11,15 +11,15 @@ class TestState:
 
     def test_init_resource_cards(self):
         """Check that initial state of game includes all resource cards."""
-        state = State()
+        state = State(players=["p1"])
         assert isinstance(state.resource_card_deck, ResourceCardDeck)
 
     def test_init_deck_of_development_cards(self):
-        state = State()
+        state = State(players=["p1"])
         assert isinstance(state.development_card_deck, DevelopmentCardDeck)
 
     def test_init_board(self):
-        state = State()
+        state = State(players=["p1"])
         assert isinstance(state.board, Board)
 
     def test_init_player_pieces(self):
@@ -44,6 +44,11 @@ class TestState:
         state = State(players=players)
         for player in players:
             assert player in state.player_order
+
+    def test_init_current_player_turn(self):
+        players = ["p1", "p2", "p3", "p4"]
+        state = State(players=players)
+        assert state.current_player_turn == state.player_order[0]
 
     def test_is_game_over_no_player_won(self):
         state = State(players=["p1", "p2"])

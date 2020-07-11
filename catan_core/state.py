@@ -27,6 +27,8 @@ class State:
         self.player_order = self.players.copy()
         random.shuffle(self.player_order)
 
+        self.current_player_turn = self.player_order[0]
+
         # Each player gets 15 roads, 5 settlements, and 4 cities.
         self.player_pieces = {}
         for player in self.players:
