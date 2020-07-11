@@ -49,6 +49,7 @@ class State:
     def player_has_won(self, player):
         points = 0
 
+        # Check for any bonus points gained by the player.
         bonus_victory_points = self.bonus_victory_points[player]
 
         points += bonus_victory_points["victory_point_development_cards"]
@@ -59,6 +60,8 @@ class State:
         if bonus_victory_points["largest_army"]:
             points += 2
 
+        # Get the points for the player from pieces on the board.
         points += self.board.victory_points_for_player(player)
 
+        # If the player has reached 10 points, they have won.
         return points >= 10
