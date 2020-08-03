@@ -66,3 +66,6 @@ class State:
 
         # If the player has reached 10 points, they have won.
         return points >= 10
+
+    def player_actions(self, player: Player) -> list:
+        return []

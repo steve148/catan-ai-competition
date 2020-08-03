@@ -64,3 +64,7 @@ class TestState:
         state.bonus_victory_points["p1"]["largest_army"] = True
 
         assert state.is_game_over() == "p1"
+
+    def test_player_actions(self):
+        state = State(players=["p1"])
+        assert state.player_actions("p1") == []
