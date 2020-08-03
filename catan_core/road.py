@@ -1,4 +1,4 @@
-from catan_core.player import Player
+from catan_core.player.player import Player
 
 
 class Road:
