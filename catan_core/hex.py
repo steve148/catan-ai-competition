@@ -1,7 +1,7 @@
 from typing import List
 
-from catan_core.vertex import Vertex
 from catan_core.resource_type.resource_type import ResourceType
+from catan_core.vertex import Vertex
 
 
 class Hex:

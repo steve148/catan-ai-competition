@@ -2,6 +2,11 @@ fail_fast: true
 repos:
   - repo: local
     hooks:
+      - id: import-order
+        name: Check import order matches python spec.
+        entry: pipenv run isort --apply
+        language: python
+        files: \.py$
       - id: formatter
         name: Code formatting is consistent.
         entry: pipenv run black
@@ -25,8 +30,3 @@ repos:
         language: python
         files: \.py$
         pass_filenames: false
-      - id: import-order
-        name: Check import order matches python spec.
-        entry: pipenv run isort --apply
-        language: python
-        files: \.py$

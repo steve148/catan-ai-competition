@@ -1,6 +1,6 @@
+from catan_core import actions
 from catan_core.player.player import Player
 from catan_core.state import State
-from catan_core import actions
 
 
 class TestPlayerActions:

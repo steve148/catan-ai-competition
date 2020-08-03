@@ -1,5 +1,5 @@
-from catan_core.resource_type.sheep import Sheep
 from catan_core.port.sheep_port import SheepPort
+from catan_core.resource_type.sheep import Sheep
 
 
 class TestSheepPort:

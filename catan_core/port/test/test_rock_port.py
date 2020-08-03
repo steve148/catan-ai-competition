@@ -1,5 +1,5 @@
-from catan_core.resource_type.rock import Rock
 from catan_core.port.rock_port import RockPort
+from catan_core.resource_type.rock import Rock
 
 
 class TestRockPort:

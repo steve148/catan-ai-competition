@@ -1,5 +1,5 @@
-from catan_core.player.player import Player
 from catan_core.building.building import Building
+from catan_core.player.player import Player
 
 
 class Settlement(Building):

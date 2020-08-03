@@ -1,9 +1,9 @@
+from catan_core.port.any_resource_port import AnyResourcePort
 from catan_core.resource_type.clay import Clay
 from catan_core.resource_type.rock import Rock
 from catan_core.resource_type.sheep import Sheep
 from catan_core.resource_type.wheat import Wheat
 from catan_core.resource_type.wood import Wood
-from catan_core.port.any_resource_port import AnyResourcePort
 
 
 class TestAnyResourcePort:

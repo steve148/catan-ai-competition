@@ -1,5 +1,5 @@
-from catan_core.building.settlement import Settlement
 from catan_core.board import Board
+from catan_core.building.settlement import Settlement
 
 
 class TestBoard:

@@ -1,5 +1,5 @@
-from catan_core.resource_type.rock import Rock
 from catan_core.hex import Hex
+from catan_core.resource_type.rock import Rock
 
 
 class TestHex:
