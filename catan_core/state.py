@@ -2,6 +2,7 @@ import random
 
 from catan_core.board import Board
 from catan_core.development_card.deck import DevelopmentCardDeck
+from catan_core.player.player import Player
 from catan_core.resource_card.deck import ResourceCardDeck
 
 
@@ -46,7 +47,7 @@ class State:
 
         return None
 
-    def player_has_won(self, player):
+    def player_has_won(self, player: Player):
         points = 0
 
         # Check for any bonus points gained by the player.

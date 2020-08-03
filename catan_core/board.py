@@ -2,6 +2,7 @@ import random
 
 from catan_core.edge import Edge
 from catan_core.hex import Hex
+from catan_core.player.player import Player
 from catan_core.resource_type.clay import Clay
 from catan_core.resource_type.rock import Rock
 from catan_core.resource_type.sheep import Sheep
@@ -61,7 +62,7 @@ class Board:
 
         return hexes
 
-    def victory_points_for_player(self, player) -> int:
+    def victory_points_for_player(self, player: Player) -> int:
         return sum(
             [
                 vertex.building.victory_points
