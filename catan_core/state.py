@@ -72,6 +72,8 @@ class State:
     def player_actions(self, player: Player) -> list:
         actions = []
 
+        actions.append({"name": "end_turn"})
+
         if not self.dice_rolled:
             actions.append({"name": "roll_dice"})
 
