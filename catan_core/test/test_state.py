@@ -50,6 +50,10 @@ class TestState:
         state = State(players=players)
         assert state.current_player_turn == state.players[0]
 
+    def test_init_dice_rolled(seslf):
+        state = State(players=["p1"])
+        assert not state.dice_rolled
+
     def test_is_game_over_no_player_won(self):
         state = State(players=["p1", "p2"])
         assert not state.is_game_over()
@@ -65,6 +69,13 @@ class TestState:
 
         assert state.is_game_over() == "p1"
 
-    def test_player_actions(self):
+    def test_player_actions_roll_dice_roll_if_not_done(self):
         state = State(players=["p1"])
-        assert state.player_actions("p1") == []
+        actions = state.player_actions(player=state.current_player_turn)
+        assert {"name": "roll_dice"} in actions
+
+    def test_player_actions_no_roll_dice_if_already_done(self):
+        state = State(players=["p1"])
+        state.dice_rolled = True
+        actions = state.player_actions(player=state.current_player_turn)
+        assert {"name": "roll_dice"} not in actions

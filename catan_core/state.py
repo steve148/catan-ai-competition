@@ -26,6 +26,8 @@ class State:
 
         self.current_player_turn = self.players[0]
 
+        self.dice_rolled = False
+
         # Each player gets 15 roads, 5 settlements, and 4 cities.
         self.player_pieces = {}
         for player in self.players:
@@ -68,4 +70,9 @@ class State:
         return points >= 10
 
     def player_actions(self, player: Player) -> list:
-        return []
+        actions = []
+
+        if not self.dice_rolled:
+            actions.append({"name": "roll_dice"})
+
+        return actions
