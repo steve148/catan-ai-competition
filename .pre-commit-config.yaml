@@ -19,3 +19,9 @@ repos:
         language: python
         files: \.py$
         pass_filenames: false
+      - id: lint
+        name: Code linting check.
+        entry: pipenv run flake8
+        language: python
+        files: \.py$
+        pass_filenames: false
