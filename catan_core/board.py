@@ -3,7 +3,6 @@ import random
 from catan_core.edge import Edge
 from catan_core.hex import Hex
 from catan_core.resource_type.clay import Clay
-from catan_core.resource_type.resource_type import ResourceType
 from catan_core.resource_type.rock import Rock
 from catan_core.resource_type.sheep import Sheep
 from catan_core.resource_type.wheat import Wheat

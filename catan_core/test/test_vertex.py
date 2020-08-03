@@ -1,7 +1,6 @@
 import pytest
 
 from catan_core.building.building import Building
-from catan_core.edge import Edge
 from catan_core.port.rock_port import RockPort
 from catan_core.vertex import Vertex
 

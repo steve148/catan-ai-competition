@@ -39,6 +39,13 @@ class TestDevelopmentCardDeck:
         ]
         assert len(road_building_cards) == 2
 
+    def test_init_five_victory_point_cards(self):
+        deck = DevelopmentCardDeck()
+        road_building_cards = [
+            card for card in deck.cards if isinstance(card, VictoryPointDevelopmentCard)
+        ]
+        assert len(road_building_cards) == 5
+
     def test_draw_card_from_deck(self):
         deck = DevelopmentCardDeck()
         previous_count = len(deck.cards)
