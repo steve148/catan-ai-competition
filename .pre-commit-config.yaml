@@ -25,3 +25,8 @@ repos:
         language: python
         files: \.py$
         pass_filenames: false
+      - id: import-order
+        name: Check import order matches python spec.
+        entry: pipenv run isort --apply
+        language: python
+        files: \.py$

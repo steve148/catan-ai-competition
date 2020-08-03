@@ -13,6 +13,8 @@ pytest-watch = "*"
 pytest-testmon = "*"
 pytest-cov = "*"
 pre-commit = "*"
+flake8-isort = "*"
+isort = "*"
 
 [packages]
 
