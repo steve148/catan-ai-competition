@@ -28,14 +28,13 @@ class State:
 
         self.dice_rolled = False
 
-        # Each player gets 15 roads, 5 settlements, and 4 cities.
         self.player_pieces = {}
-        for player in self.players:
-            self.player_pieces[player] = {"roads": 15, "settlements": 5, "cities": 4}
-
-        # Bonus victory points
         self.bonus_victory_points = {}
         for player in self.players:
+            # Each player gets 15 roads, 5 settlements, and 4 cities.
+            self.player_pieces[player] = {"roads": 15, "settlements": 5, "cities": 4}
+
+            # Bonus victory points
             self.bonus_victory_points[player] = {
                 "victory_point_development_cards": 0,
                 "longest_road": False,
