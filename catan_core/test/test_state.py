@@ -69,11 +69,6 @@ class TestState:
 
         assert state.is_game_over() == "p1"
 
-    def test_player_actions_end_turn(self):
-        state = State(players=["p1"])
-        actions = state.player_actions(player=state.current_player_turn)
-        assert {"name": "end_turn"} in actions
-
     def test_player_actions_roll_dice_roll_if_not_done(self):
         state = State(players=["p1"])
         actions = state.player_actions(player=state.current_player_turn)
@@ -84,3 +79,9 @@ class TestState:
         state.dice_rolled = True
         actions = state.player_actions(player=state.current_player_turn)
         assert {"name": "roll_dice"} not in actions
+
+    def test_player_actions_end_turn(self):
+        state = State(players=["p1"])
+        state.dice_rolled = True
+        actions = state.player_actions(player=state.current_player_turn)
+        assert {"name": "end_turn"} in actions

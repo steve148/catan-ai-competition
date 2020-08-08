@@ -72,9 +72,11 @@ class State:
     def player_actions(self, player: Player) -> list:
         actions = []
 
-        actions.append({"name": "end_turn"})
-
+        # Beginning of turn, force player to roll the dice
         if not self.dice_rolled:
             actions.append({"name": "roll_dice"})
+            return actions
+
+        actions.append({"name": "end_turn"})
 
         return actions
