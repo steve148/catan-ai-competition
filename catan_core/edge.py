@@ -1,5 +1,4 @@
 from catan_core.player.player import Player
-from catan_core.road import Road
 
 
 class Edge:
@@ -15,8 +14,8 @@ class Edge:
     def vertices(self, vertices):
         self._vertices = vertices
 
-    def place_road(self, player: Player) -> None:
+    def can_place_road(self, player: Player) -> bool:
         if self.road:
-            raise RuntimeError("Edge already has a road placed on it.")
+            return False
 
-        self.road = Road(player=player)
+        return True

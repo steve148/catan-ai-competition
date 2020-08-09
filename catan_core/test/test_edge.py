@@ -1,5 +1,3 @@
-import pytest
-
 from catan_core.edge import Edge
 from catan_core.player.player import Player
 from catan_core.road import Road
@@ -18,20 +16,13 @@ class TestEdge:
 
         assert edge.vertices == [vertex]
 
-    def test_palce_road_already_exists(self):
+    def test_can_place_returns_false_if_road_already_exists(self):
         edge = Edge()
         player = Player()
         edge.road = Road(player=player)
+        assert not edge.can_place_road(player=player)
 
-        with pytest.raises(RuntimeError, match="Edge already has a road placed on it."):
-            edge.place_road(player=player)
-
-    def test_place_road_no_road_yet(self):
+    def test_can_place_road_returns_true(self):
         edge = Edge()
         player = Player()
-
-        assert not edge.road
-
-        edge.place_road(player=player)
-
-        assert isinstance(edge.road, Road)
+        assert edge.can_place_road(player=player)
