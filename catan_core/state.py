@@ -3,6 +3,7 @@ import random
 from catan_core.board import Board
 from catan_core.development_card.deck import DevelopmentCardDeck
 from catan_core.player.player import Player
+from catan_core.player_hand import PlayerHand
 from catan_core.resource_card.deck import ResourceCardDeck
 
 
@@ -30,6 +31,7 @@ class State:
 
         self.player_pieces = {}
         self.bonus_victory_points = {}
+        self.player_hand = {}
         for player in self.players:
             # Each player gets 15 roads, 5 settlements, and 4 cities.
             self.player_pieces[player] = {"roads": 15, "settlements": 5, "cities": 4}
@@ -40,6 +42,8 @@ class State:
                 "longest_road": False,
                 "largest_army": False,
             }
+
+            self.player_hand[player] = PlayerHand(player=player)
 
     def is_game_over(self):
         for player in self.players:

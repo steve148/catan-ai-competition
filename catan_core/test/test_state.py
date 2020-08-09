@@ -2,6 +2,7 @@ from catan_core.board import Board
 from catan_core.building.city import City
 from catan_core.building.settlement import Settlement
 from catan_core.development_card.deck import DevelopmentCardDeck
+from catan_core.player_hand import PlayerHand
 from catan_core.resource_card.deck import ResourceCardDeck
 from catan_core.state import State
 
@@ -38,6 +39,10 @@ class TestState:
                 "largest_army": False,
             }
         }
+
+    def test_init_player_hands(self):
+        state = State(players=["p1"])
+        assert isinstance(state.player_hand["p1"], PlayerHand)
 
     def test_init_player_order_includes_all_players(self):
         players = ["p1", "p2", "p3", "p4"]
