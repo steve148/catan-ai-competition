@@ -34,3 +34,8 @@ class PlayerHand:
         else:
             self.hand[resource_type] -= count
             return count
+
+    def can_buy_road(self):
+        return self.has(resource_type=Wood, count=1) and self.has(
+            resource_type=Clay, count=1
+        )

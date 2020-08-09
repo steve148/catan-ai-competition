@@ -73,3 +73,10 @@ class TestPlayerHand:
         removed_count = player_hand.remove(resource_type=Clay, count=3)
         assert removed_count == 2
         assert player_hand.hand[Clay] == 0
+
+    def test_can_buy_road(self):
+        player = Player()
+        player_hand = PlayerHand(player=player)
+        player_hand.hand[Clay] = 1
+        player_hand.hand[Wood] = 1
+        assert player_hand.can_buy_road()
