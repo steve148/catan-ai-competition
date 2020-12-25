@@ -77,7 +77,7 @@ class State:
             return []
 
         return [
-            {"action": "build_road"}
+            {"action": "build_road", "kwargs": {"edge": edge}}
             for edge in self.board.edges
             if edge.can_place_road(player=player)
         ]
