@@ -97,3 +97,14 @@ class TestPlayerHand:
         player_hand.hand[Sheep] = 1
 
         assert player_hand.can_buy_settlement()
+
+    def test_can_buy_city(self):
+        player = Player()
+        player_hand = PlayerHand(player=player)
+
+        assert not player_hand.can_buy_city()
+
+        player_hand.hand[Rock] = 3
+        player_hand.hand[Wheat] = 2
+
+        assert player_hand.can_buy_city()

@@ -40,6 +40,11 @@ class PlayerHand:
             resource_type=Clay, count=1
         )
 
+    def can_buy_city(self):
+        return self.has(resource_type=Rock, count=3) and self.has(
+            resource_type=Wheat, count=2
+        )
+
     def can_buy_settlement(self):
         return (
             self.has(resource_type=Wood, count=1)
