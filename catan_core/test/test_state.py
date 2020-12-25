@@ -2,8 +2,12 @@ from catan_core.board import Board
 from catan_core.building.city import City
 from catan_core.building.settlement import Settlement
 from catan_core.development_card.deck import DevelopmentCardDeck
+from catan_core.player.player import Player
 from catan_core.player_hand import PlayerHand
 from catan_core.resource_card.deck import ResourceCardDeck
+from catan_core.resource_type.clay import Clay
+from catan_core.resource_type.wood import Wood
+from catan_core.road import Road
 from catan_core.state import State
 
 
@@ -73,6 +77,25 @@ class TestState:
         state.bonus_victory_points["p1"]["largest_army"] = True
 
         assert state.is_game_over() == "p1"
+
+    def test_can_build_road_returns_nothing_if_player_missing_resources(self):
+        player = Player()
+        state = State(players=[player])
+        assert state.can_build_road(player=player) == []
+
+    def test_can_build_road_returns_possible_build_locations(self):
+        player = Player()
+
+        state = State(players=[player])
+        state.player_hand[player].add(Wood, 1)
+        state.player_hand[player].add(Clay, 1)
+
+        state.board.edges[0].road = Road(player=player)
+
+        assert state.can_build_road(player=player) == [
+            {"action": "build_road"},
+            {"action": "build_road"},
+        ]
 
     def test_player_actions_roll_dice_roll_if_not_done(self):
         state = State(players=["p1"])

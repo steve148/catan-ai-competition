@@ -41,6 +41,8 @@ class Board:
 
                 vertex.edges.append(edge)
 
+                edge.vertices.append(vertex)
+
     def setup_hexes(self):
         # Define how many of each resource should be on the board.
         resource_types = (3 * [Rock, Clay]) + (4 * [Wood, Wheat, Sheep])

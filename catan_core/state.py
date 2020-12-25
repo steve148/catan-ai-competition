@@ -72,6 +72,16 @@ class State:
         # If the player has reached 10 points, they have won.
         return points >= 10
 
+    def can_build_road(self, player: Player) -> list:
+        if not self.player_hand[player].can_buy_road():
+            return []
+
+        return [
+            {"action": "build_road"}
+            for edge in self.board.edges
+            if edge.can_place_road(player=player)
+        ]
+
     def player_actions(self, player: Player) -> list:
         actions = []
 
