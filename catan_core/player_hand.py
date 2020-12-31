@@ -1,3 +1,5 @@
+from typing import Type
+
 from catan_core.player.player import Player
 from catan_core.resource_type.clay import Clay
 from catan_core.resource_type.resource_type import ResourceType
@@ -14,16 +16,16 @@ class PlayerHand:
         for resource_type in [Clay, Rock, Sheep, Wheat, Wood]:
             self.hand[resource_type] = 0
 
-    def has(self, resource_type: ResourceType, count: int) -> bool:
+    def has(self, resource_type: Type[ResourceType], count: int) -> bool:
         return self.hand[resource_type] >= count
 
-    def add(self, resource_type: ResourceType, count: int) -> None:
+    def add(self, resource_type: Type[ResourceType], count: int) -> None:
         if not count > 0:
             raise RuntimeError("Cannot add 0 or less cards to the hand.")
 
         self.hand[resource_type] += count
 
-    def remove(self, resource_type: ResourceType, count: int) -> int:
+    def remove(self, resource_type: Type[ResourceType], count: int) -> int:
         if not count > 0:
             raise RuntimeError("Cannot remove 0 or less cards from the hand.")
 
