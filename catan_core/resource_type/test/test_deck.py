@@ -1,7 +1,7 @@
 import pytest
 
-from catan_core.resource_card.deck import ResourceCardDeck
 from catan_core.resource_type.clay import Clay
+from catan_core.resource_type.deck import ResourceCardDeck
 from catan_core.resource_type.rock import Rock
 from catan_core.resource_type.sheep import Sheep
 from catan_core.resource_type.wheat import Wheat

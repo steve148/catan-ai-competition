@@ -4,8 +4,8 @@ from catan_core.building.settlement import Settlement
 from catan_core.development_card.deck import DevelopmentCardDeck
 from catan_core.player.player import Player
 from catan_core.player_hand import PlayerHand
-from catan_core.resource_card.deck import ResourceCardDeck
 from catan_core.resource_type.clay import Clay
+from catan_core.resource_type.deck import ResourceCardDeck
 from catan_core.resource_type.wood import Wood
 from catan_core.road import Road
 from catan_core.state import State

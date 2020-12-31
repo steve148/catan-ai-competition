@@ -4,7 +4,7 @@ from catan_core.board import Board
 from catan_core.development_card.deck import DevelopmentCardDeck
 from catan_core.player.player import Player
 from catan_core.player_hand import PlayerHand
-from catan_core.resource_card.deck import ResourceCardDeck
+from catan_core.resource_type.deck import ResourceCardDeck
 
 
 class State:
