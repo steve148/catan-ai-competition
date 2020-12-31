@@ -28,10 +28,10 @@ class Board:
             hex = self.hexes[hex_index]
 
             for vertex_index in vertex_indices:
-
                 vertex = self.vertices[vertex_index]
 
                 hex.vertices.append(vertex)
+                vertex.hexes.append(hex)
 
         for edge_index, vertex_indices in enumerate(edge_to_vertices):
             edge = self.edges[edge_index]
@@ -40,7 +40,6 @@ class Board:
                 vertex = self.vertices[vertex_index]
 
                 vertex.edges.append(edge)
-
                 edge.vertices.append(vertex)
 
     def setup_hexes(self):

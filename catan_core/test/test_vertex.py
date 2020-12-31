@@ -10,16 +10,14 @@ from catan_core.vertex import Vertex
 
 
 class TestVertex:
-    def test_init_no_edges(self):
-        vertex = Vertex()
-
-        assert vertex.edges == []
-
-    def test_init_port(self):
+    def test_init(self):
         port = RockPort()
         vertex = Vertex(port=port)
 
+        assert vertex.edges == []
+        assert vertex.hexes == []
         assert vertex.port == port
+        assert not vertex.building
 
     def test_assign_building_raises_error_if_already_assigned(self):
         vertex = Vertex()

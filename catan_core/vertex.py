@@ -9,6 +9,7 @@ from catan_core.port.port import Port
 class Vertex:
     def __init__(self, port: Port = None):
         self.edges: list[Edge] = []
+        self.hexes = []
         self.port = port
         self.building: Optional[Building] = None
 
