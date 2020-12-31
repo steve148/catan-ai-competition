@@ -9,3 +9,16 @@ class TestHex:
         assert hex.number == 5
         assert hex.vertices == []
         assert not hex.robber
+
+    def test_robber_exists_after_placing(self):
+        hex = Hex(Rock, 5)
+        assert not hex.robber
+        hex.place_robber()
+        assert hex.robber
+
+    def test_robber_gone_after_removing(self):
+        hex = Hex(Rock, 5)
+        hex.place_robber()
+        assert hex.robber
+        hex.remove_robber()
+        assert not hex.robber
