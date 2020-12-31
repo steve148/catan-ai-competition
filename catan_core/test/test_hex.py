@@ -8,3 +8,4 @@ class TestHex:
         assert hex.resource_type == Rock
         assert hex.number == 5
         assert hex.vertices == []
+        assert not hex.robber

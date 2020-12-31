@@ -9,3 +9,4 @@ class Hex:
         self.resource_type = resource_type
         self.number = number
         self.vertices: List[Vertex] = []
+        self.robber = False
