@@ -93,8 +93,8 @@ class TestState:
         state.board.edges[0].road = Road(player=player)
 
         assert state.can_build_road(player=player) == [
-            {"action": "build_road", "kwargs": {"edge": state.board.edges[1]}},
-            {"action": "build_road", "kwargs": {"edge": state.board.edges[6]}},
+            ("build_road", {"edge": state.board.edges[1]}),
+            ("build_road", {"edge": state.board.edges[6]}),
         ]
 
     def test_player_actions_roll_dice_roll_if_not_done(self):

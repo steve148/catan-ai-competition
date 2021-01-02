@@ -1,5 +1,7 @@
 import random
+from typing import List
 
+from catan_core.action import Action
 from catan_core.board import Board
 from catan_core.development_card.deck import DevelopmentCardDeck
 from catan_core.player.player import Player
@@ -72,12 +74,12 @@ class State:
         # If the player has reached 10 points, they have won.
         return points >= 10
 
-    def can_build_road(self, player: Player) -> list:
+    def can_build_road(self, player: Player) -> List[Action]:
         if not self.player_hand[player].can_buy_road():
             return []
 
         return [
-            {"action": "build_road", "kwargs": {"edge": edge}}
+            ("build_road", {"edge": edge})
             for edge in self.board.edges
             if edge.can_place_road(player=player)
         ]
