@@ -24,10 +24,13 @@ class Vertex:
         self.building = building
 
     def can_place_building(self, player: Player) -> bool:
-        if self.building:
+        if all(not edge.road or edge.road.player != player for edge in self.edges):
             return False
 
-        if all(not edge.road or edge.road.player != player for edge in self.edges):
+        return self.can_place_starting_building(player=player)
+
+    def can_place_starting_building(self, player: Player) -> bool:
+        if self.building:
             return False
 
         # Buildings must be at least 2 edges apart.

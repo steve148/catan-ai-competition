@@ -37,11 +37,15 @@ class TestVertex:
         vertex.assign_building(building=building)
         assert vertex.building == building
 
-    def test_can_place_building_returns_false_if_buidling_exists(self):
+    def test_can_place_building_returns_false_if_building_exists(self):
         player = Player()
         vertex = Vertex(id=0)
+        edge = Edge(id=0)
 
-        vertex.building = Settlement(player=player)
+        edge.vertices = [vertex]
+        edge.road = Road(player)
+        vertex.edges = [edge]
+        vertex.assign_building(building=Settlement(player=player))
 
         assert not vertex.can_place_building(player=player)
 
