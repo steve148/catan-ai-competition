@@ -1,10 +1,17 @@
+from typing import Optional
+
 from catan_core.player.player import Player
+from catan_core.road import Road
 
 
 class Edge:
-    def __init__(self):
+    def __init__(self, id: int):
+        self.id = id
         self.vertices = []
-        self.road = None
+        self.road: Optional[Road] = None
+
+    def __repr__(self) -> str:
+        return f"edge-{self.id}"
 
     def can_place_road(self, player: Player) -> bool:
         # return False

@@ -20,9 +20,9 @@ class Board:
         # Randomly select resource type and number for each hex.
         self.hexes = self.setup_hexes()
 
-        self.vertices = [Vertex() for i in range(54)]
+        self.vertices = [Vertex(id=i) for i in range(54)]
 
-        self.edges = [Edge() for i in range(72)]
+        self.edges = [Edge(id=i) for i in range(72)]
 
         for hex_index, vertex_indices in enumerate(hex_to_vertex):
             hex = self.hexes[hex_index]
@@ -58,8 +58,11 @@ class Board:
 
         # Use the shuffled hex values to create each hex instance on the board.
         hexes = []
-        for resource_type, number in hex_values:
-            hexes.append(Hex(resource_type, number))
+        for i, hex_attributes in enumerate(hex_values):
+            resource_type, dice_number = hex_attributes
+            hexes.append(
+                Hex(id=i, resource_type=resource_type, dice_number=dice_number)
+            )
 
         return hexes
 

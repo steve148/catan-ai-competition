@@ -12,15 +12,19 @@ from catan_core.vertex import Vertex
 class TestVertex:
     def test_init(self):
         port = RockPort()
-        vertex = Vertex(port=port)
+        vertex = Vertex(id=0, port=port)
 
+        assert vertex.id == 0
         assert vertex.edges == []
         assert vertex.hexes == []
         assert vertex.port == port
         assert not vertex.building
 
+    def test_repr(self):
+        assert Vertex(id=0).__repr__() == "vertex-0"
+
     def test_assign_building_raises_error_if_already_assigned(self):
-        vertex = Vertex()
+        vertex = Vertex(id=0)
         vertex.building = Building()
         with pytest.raises(
             RuntimeError, match=r"A building already exists at this vertex"
@@ -28,14 +32,14 @@ class TestVertex:
             vertex.assign_building(building=Building())
 
     def test_assign_building_successfully(self):
-        vertex = Vertex()
+        vertex = Vertex(id=0)
         building = Building()
         vertex.assign_building(building=building)
         assert vertex.building == building
 
     def test_can_place_building_returns_false_if_buidling_exists(self):
         player = Player()
-        vertex = Vertex()
+        vertex = Vertex(id=0)
 
         vertex.building = Settlement(player=player)
 
@@ -44,9 +48,9 @@ class TestVertex:
     def test_can_place_building_returns_false_if_no_roads_exist(self):
         player = Player()
         different_player = Player()
-        vertex = Vertex()
-        edge_no_road = Edge()
-        edge_road_different_player = Edge()
+        vertex = Vertex(id=0)
+        edge_no_road = Edge(id=0)
+        edge_road_different_player = Edge(id=1)
 
         vertex.edges = [edge_no_road, edge_road_different_player]
         edge_no_road.vertices = [vertex]
@@ -57,9 +61,9 @@ class TestVertex:
 
     def test_can_place_building_Returns_false_if_building_is_nearby(self):
         player = Player()
-        vertex = Vertex()
-        neighbour_vertex = Vertex()
-        edge = Edge()
+        vertex = Vertex(id=0)
+        neighbour_vertex = Vertex(id=1)
+        edge = Edge(id=0)
 
         vertex.edges = [edge]
         neighbour_vertex.edges = [edge]
@@ -71,9 +75,9 @@ class TestVertex:
 
     def test_can_place_building_returns_true(self):
         player = Player()
-        vertex = Vertex()
-        edge = Edge()
-        neighbour_vertex = Vertex()
+        vertex = Vertex(id=0)
+        edge = Edge(id=0)
+        neighbour_vertex = Vertex(id=1)
 
         edge.road = Road(player)
         vertex.edges = [edge]

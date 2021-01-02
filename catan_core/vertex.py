@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from catan_core.building.building import Building
 from catan_core.edge import Edge
@@ -7,11 +7,15 @@ from catan_core.port.port import Port
 
 
 class Vertex:
-    def __init__(self, port: Port = None):
-        self.edges: list[Edge] = []
+    def __init__(self, id: int, port: Port = None):
+        self.id = id
+        self.edges: List[Edge] = []
         self.hexes = []
         self.port = port
         self.building: Optional[Building] = None
+
+    def __repr__(self) -> str:
+        return f"vertex-{self.id}"
 
     def assign_building(self, building: Building):
         if self.building:
