@@ -22,6 +22,14 @@ class TestEdge:
 
         assert edge.vertices == [vertex]
 
+    def test_assign_road(self):
+        player = Player()
+        edge = Edge(id=0)
+        assert not edge.road
+        road = Road(player=player)
+        edge.assign_road(road=road)
+        assert edge.road == road
+
     def test_can_place_road_returns_false_if_road_already_exists(self):
         edge = Edge(id=0)
         player = Player()

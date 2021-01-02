@@ -13,6 +13,9 @@ class Edge:
     def __repr__(self) -> str:
         return f"edge-{self.id}"
 
+    def assign_road(self, road: Road):
+        self.road = road
+
     def can_place_road(self, player: Player) -> bool:
         # return False
         if self.road:
