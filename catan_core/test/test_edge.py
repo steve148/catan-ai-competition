@@ -1,3 +1,4 @@
+from catan_core.building.settlement import Settlement
 from catan_core.edge import Edge
 from catan_core.player.player import Player
 from catan_core.road import Road
@@ -49,6 +50,18 @@ class TestEdge:
         v2.edges = [edge, edge_with_road_player2]
 
         assert not edge.can_place_road(player=player1)
+
+    def test_can_place_road_retruns_true_if_adjacent_building_for_player(self):
+        player = Player()
+
+        edge = Edge(id=0)
+        vertex = Vertex(id=0)
+
+        edge.vertices = [vertex]
+        vertex.edges = [edge]
+        vertex.assign_building(building=Settlement(player=player))
+
+        assert edge.can_place_road(player=player)
 
     def test_can_place_road_returns_true_if_adjacent_road_for_player(self):
         player = Player()

@@ -19,7 +19,10 @@ class Edge:
             return False
 
         for vertex in self.vertices:
-            if not vertex.building or vertex.building.player == player:
+            if vertex.building and vertex.building.player == player:
+                return True
+
+            if not vertex.building:
                 for edge in vertex.edges:
                     if edge != self and edge.road and edge.road.player == player:
                         return True
