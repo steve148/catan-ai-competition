@@ -1,3 +1,4 @@
+from catan_core.action import Action
 from catan_core.board import Board
 from catan_core.building.city import City
 from catan_core.building.settlement import Settlement
@@ -93,23 +94,23 @@ class TestState:
         state.board.edges[0].road = Road(player=player)
 
         assert state.can_build_road(player=player) == [
-            ("build_road", {"edge": state.board.edges[1]}),
-            ("build_road", {"edge": state.board.edges[6]}),
+            Action(name="build_road", kwargs={"edge": state.board.edges[1]}),
+            Action(name="build_road", kwargs={"edge": state.board.edges[6]}),
         ]
 
     def test_player_actions_roll_dice_roll_if_not_done(self):
         state = State(players=["p1"])
         actions = state.player_actions(player=state.current_player_turn)
-        assert {"name": "roll_dice"} in actions
+        assert Action(name="roll_dice") in actions
 
     def test_player_actions_no_roll_dice_if_already_done(self):
         state = State(players=["p1"])
         state.dice_rolled = True
         actions = state.player_actions(player=state.current_player_turn)
-        assert {"name": "roll_dice"} not in actions
+        assert Action(name="roll_dice") not in actions
 
     def test_player_actions_end_turn(self):
         state = State(players=["p1"])
         state.dice_rolled = True
         actions = state.player_actions(player=state.current_player_turn)
-        assert {"name": "end_turn"} in actions
+        assert Action(name="end_turn") in actions

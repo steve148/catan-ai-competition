@@ -79,7 +79,7 @@ class State:
             return []
 
         return [
-            ("build_road", {"edge": edge})
+            Action(name="build_road", kwargs={"edge": edge})
             for edge in self.board.edges
             if edge.can_place_road(player=player)
         ]
@@ -89,9 +89,9 @@ class State:
 
         # Beginning of turn, force player to roll the dice
         if not self.dice_rolled:
-            actions.append({"name": "roll_dice"})
+            actions.append(Action(name="roll_dice"))
             return actions
 
-        actions.append({"name": "end_turn"})
+        actions.append(Action(name="end_turn"))
 
         return actions
