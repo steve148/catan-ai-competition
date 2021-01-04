@@ -14,6 +14,7 @@ pytest-testmon = "*"
 pytest-cov = "*"
 pre-commit = "*"
 isort = "*"
+pytest-mock = "*"
 
 [packages]
 
