@@ -7,6 +7,8 @@ from catan_core.player.player import Player
 from catan_core.player_hand import PlayerHand
 from catan_core.resource_type.clay import Clay
 from catan_core.resource_type.deck import ResourceCardDeck
+from catan_core.resource_type.sheep import Sheep
+from catan_core.resource_type.wheat import Wheat
 from catan_core.resource_type.wood import Wood
 from catan_core.road import Road
 from catan_core.state import State
@@ -96,6 +98,35 @@ class TestState:
         assert state.can_build_road(player=player) == [
             Action(name="build_road", kwargs={"edge": state.board.edges[1]}),
             Action(name="build_road", kwargs={"edge": state.board.edges[6]}),
+        ]
+
+    def test_can_build_settlement_returns_nothing_if_player_missing_resources(self):
+        player = Player()
+        state = State(players=[player])
+        assert state.can_build_settlement(player=player) == []
+
+    def test_can_build_settlement_returns_nothing_if_no_vertices_available(self):
+        player = Player()
+        state = State(players=[player])
+
+        for vertex in state.board.vertices:
+            vertex.building = Settlement(player=player)
+
+        assert state.can_build_settlement(player=player) == []
+
+    def test_can_build_settlement_on_available_vertices(self):
+        player = Player()
+        state = State(players=[player])
+
+        state.player_hand[player].add(resource_type=Sheep, count=1)
+        state.player_hand[player].add(resource_type=Wheat, count=1)
+        state.player_hand[player].add(resource_type=Wood, count=1)
+        state.player_hand[player].add(resource_type=Clay, count=1)
+        state.board.edges[0].assign_road(road=Road(player=player))
+
+        assert state.can_build_settlement(player=player) == [
+            Action(name="build_settlement", kwargs={"vertex": state.board.vertices[0]}),
+            Action(name="build_settlement", kwargs={"vertex": state.board.vertices[1]}),
         ]
 
     def test_player_actions_roll_dice_roll_if_not_done(self):
