@@ -101,6 +101,13 @@ class State:
             if vertex.can_place_starting_building(player=player)
         ]
 
+    def can_build_starting_road(self, player: Player) -> List[Action]:
+        return [
+            Action(name="build_starting_road", kwargs={"edge": edge})
+            for edge in self.board.edges
+            if edge.can_place_road(player=player)
+        ]
+
     def player_actions(self, player: Player) -> list:
         actions = []
 
