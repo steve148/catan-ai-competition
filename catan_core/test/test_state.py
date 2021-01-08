@@ -129,6 +129,26 @@ class TestState:
             Action(name="build_settlement", kwargs={"vertex": state.board.vertices[1]}),
         ]
 
+    def test_can_build_first_settlement_on_all_vertices_if_board_empty(self):
+        player = Player()
+        state = State(players=[player])
+
+        assert len(state.can_build_first_settlement(player=player)) == 54
+
+    def test_can_build_first_settlement_on_available_vertices(self):
+        player = Player()
+        other_player = Player()
+        state = State(players=[player, other_player])
+
+        state.board.vertices[-1].assign_building(
+            building=Settlement(player=other_player)
+        )
+
+        assert len(state.can_build_first_settlement(player=player)) == 51
+        assert state.can_build_first_settlement(player=player)[0] == Action(
+            name="build_first_settlement", kwargs={"vertex": state.board.vertices[0]}
+        )
+
     def test_player_actions_roll_dice_roll_if_not_done(self):
         state = State(players=["p1"])
         actions = state.player_actions(player=state.current_player_turn)

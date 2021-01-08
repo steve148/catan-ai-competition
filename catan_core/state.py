@@ -94,6 +94,13 @@ class State:
             if vertex.can_place_building(player=player)
         ]
 
+    def can_build_first_settlement(self, player: Player) -> List[Action]:
+        return [
+            Action(name="build_first_settlement", kwargs={"vertex": vertex})
+            for vertex in self.board.vertices
+            if vertex.can_place_starting_building(player=player)
+        ]
+
     def player_actions(self, player: Player) -> list:
         actions = []
 
