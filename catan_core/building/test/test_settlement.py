@@ -13,3 +13,9 @@ class TestSettlement:
     def test_init_victory_points(self):
         settlement = Settlement(player="p1")
         assert settlement.victory_points == 1
+
+    def test_eq_returns_true(self):
+        assert Settlement(player="p1") == Settlement(player="p1")
+
+    def test_eq_retruns_false(self):
+        assert Settlement(player="p1") != Settlement(player="p2")
