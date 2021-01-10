@@ -3,10 +3,12 @@ from typing import List
 
 from catan_core.action import Action
 from catan_core.board import Board
+from catan_core.building.settlement import Settlement
 from catan_core.development_card.deck import DevelopmentCardDeck
 from catan_core.player.player import Player
 from catan_core.player_hand import PlayerHand
 from catan_core.resource_type.deck import ResourceCardDeck
+from catan_core.vertex import Vertex
 
 
 class State:
@@ -126,3 +128,7 @@ class State:
         actions.append(Action(name="end_turn"))
 
         return actions
+
+    def build_first_settlement(self, player: Player, vertex: Vertex):
+        new_settlement = Settlement(player=player)
+        vertex.assign_building(new_settlement)

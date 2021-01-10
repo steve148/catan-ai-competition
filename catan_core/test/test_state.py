@@ -190,3 +190,10 @@ class TestState:
         state.dice_rolled = True
         actions = state.player_actions(player=state.current_player_turn)
         assert Action(name="end_turn") in actions
+
+    def test_build_first_settlement(self):
+        player = Player()
+        state = State(players=[player])
+        state.build_first_settlement(player=player, vertex=state.board.vertices[0])
+
+        assert state.board.vertices[0].building == Settlement(player=player)
