@@ -197,3 +197,19 @@ class TestState:
         state.build_first_settlement(player=player, vertex=state.board.vertices[0])
 
         assert state.board.vertices[0].building == Settlement(player=player)
+
+    def test_build_second_settlement(self):
+        player = Player()
+        state = State(players=[player])
+        vertex = state.board.vertices[0]
+        resource_type = vertex.hexes[0].resource_type
+
+        state.build_second_settlement(player=player, vertex=vertex)
+
+        assert state.board.vertices[0].building == Settlement(player=player)
+
+        actual_hand = state.player_hand[player]
+        expected_hand = PlayerHand(player=player)
+        expected_hand.add(resource_type=resource_type, count=1)
+
+        assert actual_hand == expected_hand

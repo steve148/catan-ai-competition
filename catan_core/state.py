@@ -132,3 +132,11 @@ class State:
     def build_first_settlement(self, player: Player, vertex: Vertex):
         new_settlement = Settlement(player=player)
         vertex.assign_building(new_settlement)
+
+    def build_second_settlement(self, player: Player, vertex: Vertex):
+        new_settlement = Settlement(player=player)
+        vertex.assign_building(new_settlement)
+
+        for hex in self.board.hexes:
+            if vertex in hex.vertices and hex.resource_type:
+                self.player_hand[player].add(resource_type=hex.resource_type, count=1)
