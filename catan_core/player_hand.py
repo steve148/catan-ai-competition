@@ -16,6 +16,16 @@ class PlayerHand:
         for resource_type in [Clay, Rock, Sheep, Wheat, Wood]:
             self.hand[resource_type] = 0
 
+    def __eq__(self, o: object) -> bool:
+        if self.player != o.player:
+            return False
+
+        for resource_type in [Clay, Rock, Sheep, Wheat, Wood]:
+            if self.hand[resource_type] != o.hand[resource_type]:
+                return False
+
+        return True
+
     def has(self, resource_type: Type[ResourceType], count: int) -> bool:
         return self.hand[resource_type] >= count
 
