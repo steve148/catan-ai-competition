@@ -160,6 +160,20 @@ class TestState:
             Action(name="build_starting_road", kwargs={"edge": state.board.edges[6]}),
         ]
 
+    def test_can_build_second_settlement(self):
+        player = Player()
+        other_player = Player()
+        state = State(players=[player, other_player])
+
+        state.board.vertices[-1].assign_building(
+            building=Settlement(player=other_player)
+        )
+
+        assert len(state.can_build_second_settlement(player=player)) == 51
+        assert state.can_build_second_settlement(player=player)[0] == Action(
+            name="build_second_settlement", kwargs={"vertex": state.board.vertices[0]}
+        )
+
     def test_player_actions_roll_dice_roll_if_not_done(self):
         state = State(players=["p1"])
         actions = state.player_actions(player=state.current_player_turn)
