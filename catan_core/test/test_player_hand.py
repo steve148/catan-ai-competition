@@ -24,22 +24,6 @@ class TestPlayerHand:
         assert player_hand.hand[Wheat] == 0
         assert player_hand.hand[Wood] == 0
 
-    def test_eq_returns_false_different_players(self):
-        player = Player()
-        other_player = Player()
-        assert PlayerHand(player=player) != PlayerHand(player=other_player)
-
-    def test_eq_returns_false_different_hand(self):
-        player = Player()
-        player_hand = PlayerHand(player=player)
-        other_hand = PlayerHand(player=player)
-        other_hand.add(resource_type=Rock, count=1)
-        assert player_hand != other_hand
-
-    def test_eq_returns_true(self):
-        player = Player()
-        assert PlayerHand(player=player) == PlayerHand(player=player)
-
     def test_has_at_least_x_of_resource_type(self):
         player = Player()
         player_hand = PlayerHand(player=player)

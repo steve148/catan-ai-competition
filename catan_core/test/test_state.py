@@ -7,6 +7,7 @@ from catan_core.player.player import Player
 from catan_core.player_hand import PlayerHand
 from catan_core.resource_type.clay import Clay
 from catan_core.resource_type.deck import ResourceCardDeck
+from catan_core.resource_type.rock import Rock
 from catan_core.resource_type.sheep import Sheep
 from catan_core.resource_type.wheat import Wheat
 from catan_core.resource_type.wood import Wood
@@ -194,22 +195,46 @@ class TestState:
     def test_build_first_settlement(self):
         player = Player()
         state = State(players=[player])
+
+        assert not state.board.vertices[0].building
+
         state.build_first_settlement(player=player, vertex=state.board.vertices[0])
 
-        assert state.board.vertices[0].building == Settlement(player=player)
+        assert state.board.vertices[0].building
+        assert isinstance(state.board.vertices[0].building, Settlement)
+        assert state.board.vertices[0].building.player == player
 
-    def test_build_second_settlement(self):
+    def test_build_second_settlement_building_exists(self):
         player = Player()
         state = State(players=[player])
-        vertex = state.board.vertices[0]
-        resource_type = vertex.hexes[0].resource_type
 
-        state.build_second_settlement(player=player, vertex=vertex)
+        assert not state.board.vertices[0].building
 
-        assert state.board.vertices[0].building == Settlement(player=player)
+        state.build_second_settlement(player=player, vertex=state.board.vertices[0])
 
-        actual_hand = state.player_hand[player]
-        expected_hand = PlayerHand(player=player)
-        expected_hand.add(resource_type=resource_type, count=1)
+        assert state.board.vertices[0].building
+        assert isinstance(state.board.vertices[0].building, Settlement)
+        assert state.board.vertices[0].building.player == player
 
-        assert actual_hand == expected_hand
+    def test_build_second_settlement_starting_resources_added_to_hand(self):
+        player = Player()
+        state = State(players=[player])
+        hex = state.board.hexes[0]
+        hex.resource_type = Rock
+
+        assert state.player_hand[player].has(resource_type=Rock, count=0)
+
+        state.build_second_settlement(player=player, vertex=state.board.vertices[0])
+
+        assert state.player_hand[player].has(resource_type=Rock, count=1)
+
+    def test_build_starating_road(self):
+        player = Player()
+        state = State(players=[player])
+
+        assert not state.board.edges[0].road
+
+        state.build_starting_road(player=player, edge=state.board.edges[0])
+
+        assert state.board.edges[0].road
+        assert state.board.edges[0].road.player == player

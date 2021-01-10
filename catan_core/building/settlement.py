@@ -7,6 +7,3 @@ class Settlement(Building):
         self.player = player
         self.payout = 1
         self.victory_points = 1
-
-    def __eq__(self, o: object) -> bool:
-        return self.player == o.player
