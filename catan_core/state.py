@@ -3,6 +3,7 @@ from typing import List
 
 from catan_core.action import Action
 from catan_core.board import Board
+from catan_core.building.city import City
 from catan_core.building.settlement import Settlement
 from catan_core.development_card.deck import DevelopmentCardDeck
 from catan_core.edge import Edge
@@ -10,6 +11,7 @@ from catan_core.player.player import Player
 from catan_core.player_hand import PlayerHand
 from catan_core.resource_type.clay import Clay
 from catan_core.resource_type.deck import ResourceCardDeck
+from catan_core.resource_type.rock import Rock
 from catan_core.resource_type.sheep import Sheep
 from catan_core.resource_type.wheat import Wheat
 from catan_core.resource_type.wood import Wood
@@ -164,3 +166,9 @@ class State:
         self.player_hand[player].remove(resource_type=Sheep, count=1)
         new_settlement = Settlement(player=player)
         vertex.assign_building(building=new_settlement)
+
+    def build_city(self, player: Player, vertex: Vertex):
+        self.player_hand[player].remove(resource_type=Rock, count=3)
+        self.player_hand[player].remove(resource_type=Wheat, count=2)
+        new_city = City(player=player)
+        vertex.assign_building(building=new_city)

@@ -291,4 +291,30 @@ class TestState:
         state.build_settlement(player=player, vertex=state.board.vertices[0])
 
         assert state.board.vertices[0].building
+        assert isinstance(state.board.vertices[0].building, Settlement)
+        assert state.board.vertices[0].building.player == player
+
+    def test_build_city_resources_removed(self):
+        player = Player()
+        state = State(players=[player])
+
+        state.player_hand[player].add(resource_type=Rock, count=3)
+        state.player_hand[player].add(resource_type=Wheat, count=2)
+
+        state.build_city(player=player, vertex=state.board.vertices[0])
+
+        assert not state.player_hand[player].has(resource_type=Rock, count=1)
+        assert not state.player_hand[player].has(resource_type=Wheat, count=1)
+
+    def test_build_city_exists(self):
+        player = Player()
+        state = State(players=[player])
+
+        state.player_hand[player].add(resource_type=Rock, count=3)
+        state.player_hand[player].add(resource_type=Wheat, count=2)
+
+        state.build_city(player=player, vertex=state.board.vertices[0])
+
+        assert state.board.vertices[0].building
+        assert isinstance(state.board.vertices[0].building, City)
         assert state.board.vertices[0].building.player == player
