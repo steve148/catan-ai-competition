@@ -262,3 +262,33 @@ class TestState:
 
         assert state.board.edges[0].road
         assert state.board.edges[0].road.player == player
+
+    def test_build_settlement_resources_removed(self):
+        player = Player()
+        state = State(players=[player])
+
+        state.player_hand[player].add(resource_type=Wood, count=1)
+        state.player_hand[player].add(resource_type=Clay, count=1)
+        state.player_hand[player].add(resource_type=Wheat, count=1)
+        state.player_hand[player].add(resource_type=Sheep, count=1)
+
+        state.build_settlement(player=player, vertex=state.board.vertices[0])
+
+        assert not state.player_hand[player].has(resource_type=Wood, count=1)
+        assert not state.player_hand[player].has(resource_type=Clay, count=1)
+        assert not state.player_hand[player].has(resource_type=Wheat, count=1)
+        assert not state.player_hand[player].has(resource_type=Sheep, count=1)
+
+    def test_build_settlement_exists(self):
+        player = Player()
+        state = State(players=[player])
+
+        state.player_hand[player].add(resource_type=Wood, count=1)
+        state.player_hand[player].add(resource_type=Clay, count=1)
+        state.player_hand[player].add(resource_type=Wheat, count=1)
+        state.player_hand[player].add(resource_type=Sheep, count=1)
+
+        state.build_settlement(player=player, vertex=state.board.vertices[0])
+
+        assert state.board.vertices[0].building
+        assert state.board.vertices[0].building.player == player

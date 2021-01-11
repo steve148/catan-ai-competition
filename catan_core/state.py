@@ -10,6 +10,8 @@ from catan_core.player.player import Player
 from catan_core.player_hand import PlayerHand
 from catan_core.resource_type.clay import Clay
 from catan_core.resource_type.deck import ResourceCardDeck
+from catan_core.resource_type.sheep import Sheep
+from catan_core.resource_type.wheat import Wheat
 from catan_core.resource_type.wood import Wood
 from catan_core.road import Road
 from catan_core.vertex import Vertex
@@ -154,3 +156,11 @@ class State:
         self.player_hand[player].remove(resource_type=Clay, count=1)
         new_road = Road(player=player)
         edge.assign_road(road=new_road)
+
+    def build_settlement(self, player: Player, vertex: Vertex):
+        self.player_hand[player].remove(resource_type=Wood, count=1)
+        self.player_hand[player].remove(resource_type=Clay, count=1)
+        self.player_hand[player].remove(resource_type=Wheat, count=1)
+        self.player_hand[player].remove(resource_type=Sheep, count=1)
+        new_settlement = Settlement(player=player)
+        vertex.assign_building(building=new_settlement)
