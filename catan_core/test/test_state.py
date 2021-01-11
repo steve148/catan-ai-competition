@@ -238,3 +238,27 @@ class TestState:
 
         assert state.board.edges[0].road
         assert state.board.edges[0].road.player == player
+
+    def test_build_road_cards_removed(self):
+        player = Player()
+        state = State(players=[player])
+
+        state.player_hand[player].add(resource_type=Wood, count=1)
+        state.player_hand[player].add(resource_type=Clay, count=1)
+
+        state.build_road(player=player, edge=state.board.edges[0])
+
+        assert not state.player_hand[player].has(resource_type=Wood, count=1)
+        assert not state.player_hand[player].has(resource_type=Clay, count=1)
+
+    def test_build_road_exists(self):
+        player = Player()
+        state = State(players=[player])
+
+        state.player_hand[player].add(resource_type=Wood, count=1)
+        state.player_hand[player].add(resource_type=Clay, count=1)
+
+        state.build_road(player=player, edge=state.board.edges[0])
+
+        assert state.board.edges[0].road
+        assert state.board.edges[0].road.player == player
